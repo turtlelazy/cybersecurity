@@ -32,12 +32,18 @@ def printFrqPcnt(frequencyTable):
             printStr += "\n"
     print(printStr)
 
-def euclideanDistance(table1,table2):
+def euclideanDistance(input,sample,rotation):
     sum = 0
     for letter in range(26):
-        sum += (table1[chr(a+letter)] + table2[chr(a+letter)]) ** 2
-    
+        sum += (sample[chr(a+letter)] - input[chr((letter + rotation) % 26 + a)]) ** 2
+        #print(chr((letter + rotation) % 26 + a) + str(sample[chr((letter + rotation) % 26 + a)]))
     return sum ** 0.5
+
+def findMatch(input, sample):
+    rotation = 0
+    distance = 1.0
+    for rotate in range(26):
+        print()
 
 
 #Process input
@@ -54,4 +60,4 @@ printFrqPcnt(fileFrequencyPercentages)
 sampleFile = open("sample.txt").read()
 sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
 
-print(euclideanDistance(fileFrequencyPercentages,sampleFrequencyPercentages))
+print(euclideanDistance(fileFrequencyPercentages,sampleFrequencyPercentages,3))
