@@ -32,8 +32,12 @@ def printFrqPcnt(frequencyTable):
             printStr += "\n"
     print(printStr)
 
-def euclideanDistance():
-    print()
+def euclideanDistance(table1,table2):
+    sum = 0
+    for letter in range(26):
+        sum += (table1[chr(a+letter)] + table2[chr(a+letter)]) ** 2
+    
+    return sum ** 0.5
 
 
 #Process input
@@ -49,3 +53,5 @@ printFrqPcnt(fileFrequencyPercentages)
 #Sample Data to Compare
 sampleFile = open("sample.txt").read()
 sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
+
+print(euclideanDistance(fileFrequencyPercentages,sampleFrequencyPercentages))
