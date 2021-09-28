@@ -32,12 +32,20 @@ def printFrqPcnt(frequencyTable):
             printStr += "\n"
     print(printStr)
 
+def euclideanDistance():
+    print()
 
+
+#Process input
 input = argv[1]
 file = open(input)
+inputtext = file.read()
 
-text = file.read()
+counterTable = counters(inputtext)
+fileFrequencyPercentages = frequencyTable(counterTable)
 
-counterTable = counters(text)
+printFrqPcnt(fileFrequencyPercentages)
 
-printFrqPcnt(frequencyTable(counterTable))
+#Sample Data to Compare
+sampleFile = open("sample.txt")
+sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
