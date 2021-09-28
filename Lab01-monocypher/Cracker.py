@@ -47,5 +47,5 @@ fileFrequencyPercentages = frequencyTable(counterTable)
 printFrqPcnt(fileFrequencyPercentages)
 
 #Sample Data to Compare
-sampleFile = open("sample.txt")
+sampleFile = open("sample.txt").read()
 sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
