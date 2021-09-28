@@ -54,11 +54,12 @@ def findMatch(input, sample):
 
 def decode(txt_input : str, key : int):
     txt_decoded = list(txt_input)
-    for character in range(len(txt_input)):
+    for character in range(len(txt_decoded)):
 
         for letter in range(26):
-            if txt_input[character] == chr(letter + a):
-                txt_decoded[character] = chr((letter + key) % 26 + a)
+            if txt_decoded[character].lower() == chr(letter + a):
+                txt_decoded[character] = chr((letter - key) % 26 + a)
+                break
 
     return "".join(txt_decoded)
 
@@ -77,5 +78,8 @@ sampleFile = open("sample.txt").read()
 sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
 
 
+key = findMatch(fileFrequencyPercentages,sampleFrequencyPercentages)
 
-print(decode(inputtext,findMatch(fileFrequencyPercentages,sampleFrequencyPercentages)))
+print(decode(inputtext,key))
+
+print(key)
