@@ -63,19 +63,25 @@ def decode(txt_input : str, key : int):
 
     return "".join(txt_decoded)
 
-#Process input
-input = argv[1]
-file = open(input)
-inputtext = file.read()
+#Sample Data to Compare
+sampleFile = open("sample.txt").read()
+sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
+
+if(len(sys.argv) < 2):
+	printFrqPcnt(fileFrequencyPercentages)
+
+if(len(sys.argv) > 1):
+	#Process input
+	input = argv[1]
+	file = open(input)
+	inputtext = file.read()
 
 counterTable = counters(inputtext)
 fileFrequencyPercentages = frequencyTable(counterTable)
 
-#printFrqPcnt(fileFrequencyPercentages)
 
-#Sample Data to Compare
-sampleFile = open("sample.txt").read()
-sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
+
+
 
 
 key = findMatch(fileFrequencyPercentages,sampleFrequencyPercentages)
