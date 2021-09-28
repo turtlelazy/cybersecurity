@@ -1,3 +1,4 @@
+from io import StringIO
 from sys import argv
 
 A = 65
@@ -42,9 +43,24 @@ def euclideanDistance(input,sample,rotation):
 def findMatch(input, sample):
     rotation = 0
     distance = 1.0
-    for rotate in range(26):
-        print()
+    for currentRotate in range(26):
+        localDistance = euclideanDistance(input,sample,currentRotate)
+        if  localDistance < distance:
+            rotation = currentRotate
+            distance = localDistance
+    print(rotation)
+    print(distance)
+    return rotation
 
+def decode(txt_input : str, key : int):
+    txt_decoded = list(txt_input)
+    for character in range(len(txt_input)):
+
+        for letter in range(26):
+            if txt_input[character] == chr(letter + a):
+                txt_decoded[character] = chr((letter + key) % 26 + a)
+
+    return "".join(txt_decoded)
 
 #Process input
 input = argv[1]
@@ -54,10 +70,12 @@ inputtext = file.read()
 counterTable = counters(inputtext)
 fileFrequencyPercentages = frequencyTable(counterTable)
 
-printFrqPcnt(fileFrequencyPercentages)
+#printFrqPcnt(fileFrequencyPercentages)
 
 #Sample Data to Compare
 sampleFile = open("sample.txt").read()
 sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
 
-print(euclideanDistance(fileFrequencyPercentages,sampleFrequencyPercentages,3))
+
+
+print(decode(inputtext,findMatch(fileFrequencyPercentages,sampleFrequencyPercentages)))
