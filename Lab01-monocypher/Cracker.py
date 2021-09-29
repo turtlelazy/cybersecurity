@@ -48,8 +48,8 @@ def findMatch(input, sample):
         if  localDistance < distance:
             rotation = currentRotate
             distance = localDistance
-    print(rotation)
-    print(distance)
+    #print(rotation)
+    #print(distance)
     return rotation
 
 def decode(txt_input : str, key : int):
@@ -57,8 +57,11 @@ def decode(txt_input : str, key : int):
     for character in range(len(txt_decoded)):
 
         for letter in range(26):
-            if txt_decoded[character].lower() == chr(letter + a):
+            if txt_decoded[character] == chr(letter + a):
                 txt_decoded[character] = chr((letter - key) % 26 + a)
+                break
+            elif txt_decoded[character] == chr(letter + A):
+                txt_decoded[character] = chr((letter - key) % 26 + A)
                 break
 
     return "".join(txt_decoded)
@@ -71,15 +74,16 @@ inputtext = file.read()
 counterTable = counters(inputtext)
 fileFrequencyPercentages = frequencyTable(counterTable)
 
+if argv[2] == "decode":
+    sampleFile = open("alice_in_wonderland.txt").read()
+    sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
+    key = findMatch(fileFrequencyPercentages,sampleFrequencyPercentages)
+    print(decode(inputtext, key))
+
+elif argv[2] == "frequency":
+    printFrqPcnt(fileFrequencyPercentages)
+
+
 #printFrqPcnt(fileFrequencyPercentages)
 
 #Sample Data to Compare
-sampleFile = open("sample.txt").read()
-sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
-
-
-key = findMatch(fileFrequencyPercentages,sampleFrequencyPercentages)
-
-print(decode(inputtext,key))
-
-print(key)
