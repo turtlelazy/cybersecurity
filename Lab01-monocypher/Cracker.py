@@ -67,23 +67,24 @@ def decode(txt_input : str, key : int):
     return "".join(txt_decoded)
 
 #Process input
-input = argv[1]
-file = open(input)
-inputtext = file.read()
+if __name__ == "__main__":
+    input = argv[1]
+    file = open(input)
+    inputtext = file.read()
 
-counterTable = counters(inputtext)
-fileFrequencyPercentages = frequencyTable(counterTable)
+    counterTable = counters(inputtext)
+    fileFrequencyPercentages = frequencyTable(counterTable)
 
-if argv[2] == "decode":
-    sampleFile = open("alice_in_wonderland.txt").read()
-    sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
-    key = findMatch(fileFrequencyPercentages,sampleFrequencyPercentages)
-    print(decode(inputtext, key))
+    if argv[2] == "decode":
+        sampleFile = open("alice_in_wonderland.txt").read()
+        sampleFrequencyPercentages = frequencyTable(counters(sampleFile))
+        key = findMatch(fileFrequencyPercentages,sampleFrequencyPercentages)
+        print(decode(inputtext, key))
 
-elif argv[2] == "frequency":
-    printFrqPcnt(fileFrequencyPercentages)
+    elif argv[2] == "frequency":
+        printFrqPcnt(fileFrequencyPercentages)
 
 
-#printFrqPcnt(fileFrequencyPercentages)
+    #printFrqPcnt(fileFrequencyPercentages)
 
-#Sample Data to Compare
+    #Sample Data to Compare
