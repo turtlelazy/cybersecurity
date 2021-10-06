@@ -38,6 +38,26 @@ for i in range(len(wordHeaps)):
 """
 sampleFile = open("alice_in_wonderland.txt").read()
 for i in range(len(wordHeaps)):
-    key = Cracker.findMatch(wordHeaps[i],sampleFile)
-    wordHeaps[i] = Cracker.decode(wordHeaps[i],key)
+    counterTable = Cracker.counters(wordHeaps[i])
+    fileFrequencyPercentages = Cracker.frequencyTable(counterTable)
 
+    sampleFrequencyPercentages = Cracker.frequencyTable(Cracker.counters(sampleFile))
+
+    key = Cracker.findMatch(fileFrequencyPercentages,sampleFrequencyPercentages)
+    print(key)
+    wordHeaps[i] = Cracker.decode(wordHeaps[i],key)
+    #print(wordHeaps[i])
+
+decodedString = ""
+counter = 0
+loop = 0
+for i in range(len(file)):
+    decodedString += wordHeaps[counter][loop]
+    counter +=1
+    if counter == heapCount:
+        counter = 0
+        loop+=1
+
+print(decodedString)
+#print(len(file))
+#print(len(decodedString))
