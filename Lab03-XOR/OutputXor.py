@@ -9,3 +9,13 @@ def xorBinary(text,key):
     
     return xorBinary
 
+
+def compileString(xorBinary):
+    returnString = ""
+
+    for ascii in range(len(xorBinary)):
+        returnString += chr(xorBinary[ascii])
+
+    return returnString
+
+
