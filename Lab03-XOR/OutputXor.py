@@ -19,3 +19,15 @@ def compileString(xorBinary):
     return returnString
 
 
+def compileHexCode(xorBinary):
+    returnString = ""
+
+    for ascii in range(len(xorBinary)):
+        returnString += hex(xorBinary[ascii])
+        if ascii != len(xorBinary) - 1:
+            returnString += " "
+
+    return returnString
+
+
+
