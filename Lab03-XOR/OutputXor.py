@@ -35,9 +35,9 @@ keyfile = argv[2]
 message = argv[3]
 
 # removes the mandatory \n at the end of the file to support one line messages.
-key = open(keyfile, "rb").read()[:-1]
+key = open(keyfile, "rb").read()#[:-1]
 # removes the mandatory \n at the end of the file to support one line messages.
-inp = open(message, "rb").read()[:-1]
+inp = open(message, "rb").read()#[:-1]
 debug = True
 
 if(debug):
