@@ -38,7 +38,7 @@ message = argv[3]
 key = open(keyfile, "rb").read()#[:-1]
 # removes the mandatory \n at the end of the file to support one line messages.
 inp = open(message, "rb").read()#[:-1]
-debug = True
+debug = False
 
 if(debug):
   print("mode:"+mode)
