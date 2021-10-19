@@ -1,11 +1,16 @@
 from sys import argv
 
+debug = False
+
 def xorBinary(text,key):
     xorBinary = []
     for letter in range(len(text)):
         c1 = ord(text[letter])
         c2 = ord(key[letter%len(key)])
         xorBinary.append(c1 ^ c2)
+        if(debug):
+            print(hex(c1))
+            print(hex(c2))
     
     return xorBinary
 
@@ -35,10 +40,9 @@ keyfile = argv[2]
 message = argv[3]
 
 # removes the mandatory \n at the end of the file to support one line messages.
-key = open(keyfile, "rb").read()#[:-1]
+keyfile = open(keyfile, "rb").read()#[:-1]
 # removes the mandatory \n at the end of the file to support one line messages.
-inp = open(message, "rb").read()#[:-1]
-debug = False
+message = open(message, "rb").read()#[:-1]
 
 if(debug):
   print("mode:"+mode)
@@ -49,3 +53,5 @@ if(mode == "numOut"):
     print(compileHexCode(xorBinary(message, keyfile)))
 elif(mode == "human"):
     print(compileString(xorBinary(message, keyfile)))
+
+#print(compileHexCode(xorBinary('hello','A')))
