@@ -46,8 +46,8 @@ message = open(message, "rb").read()#[:-1]
 
 if(debug):
   print("mode:"+mode)
-  print("key: "+key)
-  print("inp: "+inp)
+  print("key: "+keyfile)
+  print("inp: "+message)
 
 if(mode == "numOut"):
     print(compileHexCode(xorBinary(message, keyfile)))
