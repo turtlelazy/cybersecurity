@@ -1,7 +1,7 @@
 from sys import argv
 
 debug = False
-
+#Read in binary
 def xorBinary(text,key):
     xorBinary = []
     for letter in range(len(text)):
@@ -28,7 +28,7 @@ def compileHexCode(xorBinary):
     returnString = ""
 
     for ascii in range(len(xorBinary)):
-        returnString += hex(xorBinary[ascii])
+        returnString += hex(xorBinary[ascii])[2:]
         if ascii != len(xorBinary) - 1:
             returnString += " "
 
@@ -52,6 +52,13 @@ if(debug):
 if(mode == "numOut"):
     print(compileHexCode(xorBinary(message, keyfile)))
 elif(mode == "human"):
-    print(compileString(xorBinary(message, keyfile)))
+    result = compileString(xorBinary(message, keyfile))
+    outfile = open("output", "wb")
+
+    outfile.write(result)
+
 
 #print(compileHexCode(xorBinary('hello','A')))
+
+#result = 5
+#f.write(result.to_bytes(1,byteorder="little"))
