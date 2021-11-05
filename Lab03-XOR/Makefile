@@ -1,2 +1,2 @@
 run:
-	@python OutputXor.py $(ARGS)
+	@python2 OutputXor.py $(ARGS)

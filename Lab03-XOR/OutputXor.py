@@ -54,8 +54,9 @@ if(mode == "numOut"):
 elif(mode == "human"):
     result = compileString(xorBinary(message, keyfile))
     outfile = open("output", "wb")
-
     outfile.write(result)
+    outfile.close()
+
 
 
 #print(compileHexCode(xorBinary('hello','A')))
